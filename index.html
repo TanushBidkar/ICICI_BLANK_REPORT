@@ -132,8 +132,8 @@
                         <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
                             <button id="check-work-order" class="btn verification-btn">Work Order</button>
                             <button id="check-cwi" class="btn verification-btn">CWI</button>
-                            <button id="check-excess" class="btn verification-btn red">Check Positive Variance</button>
-                            <button id="check-savings" class="btn verification-btn green">Check Negative Variance</button>
+                            <button id="check-excess" class="btn verification-btn red">Check Positive Variance w.r.t Work Order</button>
+                            <button id="check-savings" class="btn verification-btn green">Check Negative Variance w.r.t Work Order</button>
                             <button id="check-total" class="btn verification-btn gray">Check Total</button>
                         </div>
                         <div class="grid grid-cols-1 gap-4 pt-4">
@@ -487,11 +487,25 @@
             }
         }
         
-        ['work-order', 'cwi', 'excess', 'savings', 'total'].forEach(id => {
-            const checkType = id.replace(/-\w/g, c => c[1].toUpperCase());
-            const displayName = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-            document.getElementById(`check-${id}`).addEventListener('click', () => handleCheck(checkType, displayName));
-        });
+        // Map IDs to specific Display Names
+const CHECK_NAMES = {
+    'work-order': 'Work Order',
+    'cwi': 'CWI',
+    'excess': 'Positive Variance w.r.t. Work Order', // Renamed here
+    'savings': 'Negative Variance w.r.t Work Order', // Renamed here
+    'total': 'Total'
+};
+
+Object.keys(CHECK_NAMES).forEach(id => {
+    // maintain internal checkType logic (e.g. 'work-order' -> 'workOrder') for column mapping
+    const checkType = id.replace(/-\w/g, c => c[1].toUpperCase());
+    const displayName = CHECK_NAMES[id];
+    
+    const btn = document.getElementById(`check-${id}`);
+    if (btn) {
+        btn.addEventListener('click', () => handleCheck(checkType, displayName));
+    }
+});
         
         // --- START: HELPER FUNCTIONS FOR ITEM-WISE COMPARISON ---
         
@@ -937,3 +951,4 @@
 </body>
 
 </html>
+
