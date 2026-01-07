@@ -132,8 +132,8 @@
                         <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
                             <button id="check-work-order" class="btn verification-btn">Work Order</button>
                             <button id="check-cwi" class="btn verification-btn">CWI</button>
-                            <button id="check-excess" class="btn verification-btn red">Check Positive Variance w.r.t Work Order</button>
-                            <button id="check-savings" class="btn verification-btn green">Check Negative Variance w.r.t Work Order</button>
+                            <button id="check-excess" class="btn verification-btn red">Check Positive Variance w.r.t PO</button>
+                            <button id="check-savings" class="btn verification-btn green">Check Negative Variance w.r.t PO</button>
                             <button id="check-total" class="btn verification-btn gray">Check Total</button>
                         </div>
                         <div class="grid grid-cols-1 gap-4 pt-4">
@@ -491,8 +491,8 @@
 const CHECK_NAMES = {
     'work-order': 'Work Order',
     'cwi': 'CWI',
-    'excess': 'Positive Variance w.r.t. Work Order', // Renamed here
-    'savings': 'Negative Variance w.r.t Work Order', // Renamed here
+    'excess': 'Positive Variance w.r.t. PO', // Renamed here
+    'savings': 'Negative Variance w.r.t PO', // Renamed here
     'total': 'Total'
 };
 
@@ -951,4 +951,5 @@ Object.keys(CHECK_NAMES).forEach(id => {
 </body>
 
 </html>
+
 
